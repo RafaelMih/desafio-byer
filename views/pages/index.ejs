@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Desafio Byer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+      rel="stylesheet"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/assets/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Responsive navbar-->
+    <nav id="menunav" class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container px-lg-5">
+        <a class="navbar-brand" href="#!">
+          <img
+            src="/assets/img/kisspng-logo-bayer-4-leverkusen-organization-www-svbayer-8-de-urlscan-io-5bfce8e7d4f298.1707804615433013518722.jpg"
+            class="header_logo"
+            width="60"
+            height="40"
+          />
+          Desafio Byer - Monitoramento dos Mananciais de São Paulo</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Header-->
+    <header class="py-5">
+      <div class="container px-lg-5 op7">
+        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+          <div class="text-center">
+            <h3>Região Metropolitana</h3>
+          </div>
+          <div class="text-left">
+            <hr />
+            <div>
+              Verificar volume (%):
+              <input type="number" id="minimo" maxlength="3" />
+              <input
+                class="btn btn-primary"
+                type="button"
+                value="Verificar"
+                onclick="verificar()"
+              />
+            </div>
+            <div class="form-text">
+              <small class="text-muted"
+                >Apenas habilitará para notificação quando a verificação for
+                igual ou menor que 50%</small
+              >
+            </div>
+            <hr />
+            <div>
+              <table width="100%" id="tabela"></table>
+            </div>
+          </div>
+          <div id="div-notificacao">
+            <div class="m-4 m-lg-5">
+              <form id="form-notificacao">
+                <hr />
+                <div class="text-center">
+                  <h5>Mensagem</h5>
+                </div>
+                <div class="text-left">
+                  <br />
+                  <div id="mensagem"></div>
+                  <br />
+                </div>
+                <hr />
+                <div class="text-center">
+                  <h5>Notificações</h5>
+                </div>
+                <div class="text-left">
+                  <ul>
+                    <li>
+                      <input checked class="form-check-input" type="checkbox" />
+                      Enviar E-mail
+                    </li>
+                    <li>
+                      <input checked class="form-check-input" type="checkbox" />
+                      Enviar Push Notification
+                    </li>
+                  </ul>
+                </div>
+                <hr />
+                <div><h5>Contatos cadastrados</h5></div>
+                <div class="text-left">
+                  <ul>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      contato@g1.com.br
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      contato@cnn.com.br
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      contato@sabesp.com.br
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      prefeiturarioclaro@gov.com.br
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      prefeiturasaolourenco@gov.com.br
+                    </li>
+                  </ul>
+                </div>
+                <div><h5>Celulares cadastrados</h5></div>
+                <div class="text-left">
+                  <ul>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      G1 - (11) 93233-1233
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      CNN - (11) 92341-1423
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      SABESP - (11) 99812-2113
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      Prefeitura Rio Claro - (11) 92332-1923
+                    </li>
+                    <li>
+                      <input class="form-check-input" type="checkbox" />
+                      Prefeitura São Lourenço - (11) 99123-9419
+                    </li>
+                  </ul>
+                </div>
+                <div class="m-4 m-lg-5">
+                  <input
+                    class="btn btn-primary"
+                    type="button"
+                    value="Notificar contatos"
+                    onclick="notificar()"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="m-4 m-lg-5">
+            <hr />
+            <div>
+              Fonte:
+              <a href="https://mananciais.sabesp.com.br/" target="_blank"
+                >Portal dos Mananciais - Região Metropolitana de São Paulo</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/scripts.js"></script>
+  </body>
+</html>
